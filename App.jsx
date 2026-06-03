@@ -6,28 +6,32 @@ import ProductList from "./ProductList";
 import CartItem from "./CartItem";
 
 function AppContent() {
-  // 'landing' | 'products' | 'cart'
-  const [currentPage, setCurrentPage] = useState("landing");
+  // State variable to control which page is shown
+  const [showProductList, setShowProductList] = useState(false);
+  const [showCart, setShowCart] = useState(false);
 
-  const navigateTo = (page) => setCurrentPage(page);
+  const navigateTo = (page) => {
+    setShowProductList(page === "products");
+    setShowCart(page === "cart");
+  };
 
-  if (currentPage === "products") {
-    return <ProductList navigateTo={navigateTo} />;
+  if (showCart) {
+    return <CartItem navigateTo={navigateTo} />;
   }
 
-  if (currentPage === "cart") {
-    return <CartItem navigateTo={navigateTo} />;
+  if (showProductList) {
+    return <ProductList navigateTo={navigateTo} />;
   }
 
   // Landing Page
   return (
-    <div className="landing-page">
+    <div className="landing-page background-image">
       <div className="landing-content">
         <h1>🌿 Paradise Nursery</h1>
         <p className="tagline">Where Every Home Blossoms</p>
         <button
           className="get-started-btn"
-          onClick={() => navigateTo("products")}
+          onClick={() => setShowProductList(true)}
         >
           Get Started
         </button>
