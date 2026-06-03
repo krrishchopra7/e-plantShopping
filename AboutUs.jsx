@@ -3,59 +3,47 @@ import "./App.css";
 
 const AboutUs = () => {
   return (
-    <div className="about-us">
-      <div className="about-hero">
-        <h1>🌿 About Paradise Nursery</h1>
-        <p className="about-tagline">Rooted in passion. Growing with purpose.</p>
-      </div>
+    <div className="about-us-container">
+      <h1>About Us</h1>
 
-      <div className="about-content">
-        <section className="about-section">
-          <h2>Who We Are</h2>
-          <p>
-            Paradise Nursery is a family-owned online plant shop dedicated to bringing
-            the beauty of nature into every home and workspace. Founded in 2018, we have
-            helped thousands of plant lovers across the country find their perfect green
-            companions.
-          </p>
-        </section>
+      <p>
+        Welcome to <strong>Paradise Nursery</strong>, your one-stop destination
+        for beautiful, healthy houseplants. We are passionate about bringing the
+        joy and tranquility of nature into every home and workspace.
+      </p>
 
-        <section className="about-section">
-          <h2>Our Mission</h2>
-          <p>
-            Our mission is simple: to make plant parenthood accessible, joyful, and
-            sustainable. We carefully curate every plant we sell, ensuring that each one
-            arrives healthy, thriving, and ready to transform your space.
-          </p>
-        </section>
+      <p>
+        Founded with a love for greenery, Paradise Nursery offers a carefully
+        curated collection of plants ranging from low-maintenance succulents to
+        lush tropical foliage and vibrant flowering plants. Each plant is
+        hand-selected and nurtured to ensure it arrives healthy and thriving.
+      </p>
 
-        <section className="about-section">
-          <h2>Why Choose Us?</h2>
-          <ul className="about-list">
-            <li>🌱 100% healthy, hand-selected plants</li>
-            <li>📦 Eco-friendly packaging</li>
-            <li>🚚 Fast, reliable shipping nationwide</li>
-            <li>💚 Expert care guides with every purchase</li>
-            <li>🔄 30-day happiness guarantee</li>
-          </ul>
-        </section>
+      <p>
+        Our mission is to make plant parenthood accessible and enjoyable for
+        everyone — whether you are a seasoned plant enthusiast or just getting
+        started on your green journey. We provide expert care guides, eco-friendly
+        packaging, and a 30-day happiness guarantee on every order.
+      </p>
 
-        <section className="about-section">
-          <h2>Our Values</h2>
-          <p>
-            We believe in sustainability, community, and the transformative power of
-            plants. Every purchase supports our reforestation initiative — we plant one
-            tree for every order placed.
-          </p>
-        </section>
+      <p>
+        At Paradise Nursery, we believe that plants do more than decorate a space.
+        They improve air quality, reduce stress, and bring a sense of calm and
+        well-being to everyday life. Let us help you find the perfect plant
+        companion for your home or office.
+      </p>
 
-        <section className="about-section about-contact">
-          <h2>Get in Touch</h2>
-          <p>📧 hello@paradisenursery.com</p>
-          <p>📞 (555) 123-4567</p>
-          <p>🕐 Mon–Fri: 9am – 6pm EST</p>
-        </section>
-      </div>
+      <p>
+        Our services include a wide selection of houseplants organized by category,
+        detailed care instructions, fast and reliable shipping, and dedicated
+        customer support. We are committed to sustainability and plant one tree for
+        every order placed.
+      </p>
+
+      <p>
+        Thank you for choosing Paradise Nursery. We look forward to helping your
+        space bloom!
+      </p>
     </div>
   );
 };
