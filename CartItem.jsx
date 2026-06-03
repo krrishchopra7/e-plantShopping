@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   removeItem,
   updateQuantity,
   selectCartItems,
-  selectCartTotalCount,
 } from "./CartSlice";
 import { Navbar } from "./ProductList";
 import "./App.css";
@@ -13,13 +12,21 @@ function CartItem({ navigateTo }) {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
 
-  // calculateTotalAmount — sums item.quantity * item.price for all items
-  const calculateTotalAmount = () => {
-    return cartItems.reduce(
+  // calculateTotalAmount — dynamically sums item.quantity * item.price
+  const calculateTotalAmount = (items) => {
+    return items.reduce(
       (total, item) => total + item.quantity * item.price,
       0
     );
   };
+
+  // totalAmount updates dynamically whenever cartItems changes
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  useEffect(() => {
+    const newTotal = calculateTotalAmount(cartItems);
+    setTotalAmount(newTotal);
+  }, [cartItems]);
 
   const handleIncrease = (id, currentQty) => {
     dispatch(updateQuantity({ id, quantity: currentQty + 1 }));
@@ -38,16 +45,14 @@ function CartItem({ navigateTo }) {
   };
 
   const handleCheckout = () => {
-    alert("🛒 Coming Soon! Our checkout is under construction. Check back soon!");
+    alert("Coming Soon! Our checkout is under construction. Check back soon!");
   };
-
-  const totalAmount = calculateTotalAmount();
 
   return (
     <>
       <Navbar navigateTo={navigateTo} />
       <div className="cart-page">
-        <h1>🛒 Your Cart</h1>
+        <h1>🛒 Shopping Cart</h1>
 
         {cartItems.length === 0 ? (
           <div className="cart-empty">
@@ -62,7 +67,7 @@ function CartItem({ navigateTo }) {
           </div>
         ) : (
           <>
-            {/* Cart Items */}
+            {/* Cart Items List */}
             {cartItems.map((item) => (
               <div key={item.id} className="cart-item">
                 <img src={item.image} alt={item.name} />
@@ -70,7 +75,7 @@ function CartItem({ navigateTo }) {
                 <div className="cart-item-info">
                   <p className="cart-item-name">{item.name}</p>
                   <p className="cart-item-unit-price">
-                    Unit price: ${item.price.toFixed(2)}
+                    Unit Price: ${item.price.toFixed(2)}
                   </p>
                   <p className="cart-item-total">
                     Total: ${(item.quantity * item.price).toFixed(2)}
@@ -105,7 +110,7 @@ function CartItem({ navigateTo }) {
               </div>
             ))}
 
-            {/* Cart Summary */}
+            {/* Cart Total & Actions */}
             <div className="cart-summary">
               <p className="cart-total">
                 Total Amount: ${totalAmount.toFixed(2)}
