@@ -6,7 +6,6 @@ import ProductList from "./ProductList";
 import CartItem from "./CartItem";
 
 function AppContent() {
-  // State variable to control which page is shown
   const [showProductList, setShowProductList] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
@@ -27,7 +26,7 @@ function AppContent() {
   return (
     <div className="landing-page background-image">
       <div className="landing-content">
-        <h1>🌿 Paradise Nursery</h1>
+        <h1>Welcome to Paradise Nursery</h1>
         <p className="tagline">Where Every Home Blossoms</p>
         <button
           className="get-started-btn"
