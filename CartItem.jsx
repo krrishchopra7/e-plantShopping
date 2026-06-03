@@ -4,7 +4,6 @@ import {
   removeItem,
   updateQuantity,
   selectCartItems,
-  selectCartTotalCost,
   selectCartTotalCount,
 } from "./CartSlice";
 import { Navbar } from "./ProductList";
@@ -13,7 +12,14 @@ import "./App.css";
 function CartItem({ navigateTo }) {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
-  const totalCost = useSelector(selectCartTotalCost);
+
+  // calculateTotalAmount — sums item.quantity * item.price for all items
+  const calculateTotalAmount = () => {
+    return cartItems.reduce(
+      (total, item) => total + item.quantity * item.price,
+      0
+    );
+  };
 
   const handleIncrease = (id, currentQty) => {
     dispatch(updateQuantity({ id, quantity: currentQty + 1 }));
@@ -35,6 +41,8 @@ function CartItem({ navigateTo }) {
     alert("🛒 Coming Soon! Our checkout is under construction. Check back soon!");
   };
 
+  const totalAmount = calculateTotalAmount();
+
   return (
     <>
       <Navbar navigateTo={navigateTo} />
@@ -44,11 +52,10 @@ function CartItem({ navigateTo }) {
         {cartItems.length === 0 ? (
           <div className="cart-empty">
             <p>Your cart is empty 🌿</p>
-            <br />
             <button
               className="continue-btn"
               onClick={() => navigateTo("products")}
-              style={{ marginTop: "1rem" }}
+              style={{ marginTop: "1.5rem" }}
             >
               Browse Plants
             </button>
@@ -66,7 +73,7 @@ function CartItem({ navigateTo }) {
                     Unit price: ${item.price.toFixed(2)}
                   </p>
                   <p className="cart-item-total">
-                    Subtotal: ${(item.price * item.quantity).toFixed(2)}
+                    Total: ${(item.quantity * item.price).toFixed(2)}
                   </p>
                 </div>
 
@@ -101,7 +108,7 @@ function CartItem({ navigateTo }) {
             {/* Cart Summary */}
             <div className="cart-summary">
               <p className="cart-total">
-                Total: ${totalCost.toFixed(2)}
+                Total Amount: ${totalAmount.toFixed(2)}
               </p>
               <div className="cart-actions">
                 <button
